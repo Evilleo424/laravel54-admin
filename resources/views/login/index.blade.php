@@ -57,7 +57,7 @@
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input name="is_remember" type="checkbox"> Remember Me
+                            <input name="is_remember" type="checkbox" value="1"> Remember Me
                         </label>
                     </div>
                 </div>
