@@ -29,29 +29,41 @@
 
                                 @foreach($permissions as $permission)
                                     <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="permissions[]"
-                                                   @if (in_array($permission['id'],$myPermissions))
-                                                   checked
-                                                   @endif
-                                                   value="{{$permission['id']}}">{{$permission['name']}}
-                                        </label>
-                                        <br/>
-                                        @if(count($permission['children']) != 0)
-                                            @foreach($permission['children'] as $children)
-                                                @foreach($children as $sub_children)
+                                        <table>
+                                            <tr>
+                                                <td>
                                                     <label>
                                                         <input type="checkbox" name="permissions[]"
-                                                               @if (in_array($sub_children['id'],$myPermissions))
+                                                               @if (in_array($permission['id'],$myPermissions))
                                                                checked
-                                                                @endif
-                                                               value="{{$sub_children['id']}}">{{$sub_children['name']}}
+                                                               @endif
+                                                               value="{{$permission['id']}}">{{$permission['name']}}
                                                     </label>
+                                                </td>
+                                                <td></td><td></td><td></td><td></td><td></td>
+                                            </tr>
+                                            @if(count($permission['children']) != 0)
+                                                @foreach($permission['children'] as $children)
+                                                    <tr>
+                                                        <td></td>
+                                                        @foreach($children as $sub_children)
+                                                            <td>
+                                                                <label>
+                                                                    <input type="checkbox" name="permissions[]"
+                                                                           @if (in_array($sub_children['id'],$myPermissions))
+                                                                           checked
+                                                                           @endif
+                                                                           value="{{$sub_children['id']}}">{{$sub_children['name']}}
+                                                                </label>&nbsp;
+                                                            </td>
+                                                        @endforeach
+                                                    </tr>
                                                 @endforeach
-                                                <br/>
-                                            @endforeach
+                                            @endif
+                                        </table>
 
-                                        @endif
+
+
                                     </div>
                                 @endforeach
                             </div>
