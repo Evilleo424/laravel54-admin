@@ -14,7 +14,7 @@
                         <form action="/roles/{{$role->id}}/permission" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
-                                @foreach($permissions as $permission)
+                                {{--@foreach($permissions as $permission)
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="permissions[]"
@@ -24,6 +24,34 @@
                                                    value="{{$permission->id}}">
                                             {{$permission->name}}
                                         </label>
+                                    </div>
+                                @endforeach--}}
+
+                                @foreach($permissions as $permission)
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="permissions[]"
+                                                   @if (in_array($permission['id'],$myPermissions))
+                                                   checked
+                                                   @endif
+                                                   value="{{$permission['id']}}">{{$permission['name']}}
+                                        </label>
+                                        <br/>
+                                        @if(count($permission['children']) != 0)
+                                            @foreach($permission['children'] as $children)
+                                                @foreach($children as $sub_children)
+                                                    <label>
+                                                        <input type="checkbox" name="permissions[]"
+                                                               @if (in_array($sub_children['id'],$myPermissions))
+                                                               checked
+                                                                @endif
+                                                               value="{{$sub_children['id']}}">{{$sub_children['name']}}
+                                                    </label>
+                                                @endforeach
+                                                <br/>
+                                            @endforeach
+
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>

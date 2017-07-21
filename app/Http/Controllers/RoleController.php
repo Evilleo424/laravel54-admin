@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use App\AdminPermission;
 use App\AdminRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 class RoleController extends Controller
 {
     public function index(){
@@ -34,8 +36,22 @@ class RoleController extends Controller
         return  redirect('/roles');
     }
     public function permission(AdminRole $role){
-        $permissions = AdminPermission::all();
-        $myPermissions = $role->permissions;
+        $permissions = AdminPermission::where('parent_id',0)->with('children')->get()->toArray();
+
+        foreach($permissions as &$permission){
+            if(empty($permission['children'])){
+                continue;
+            }
+            foreach($permission['children'] as $key =>  $children){
+                $sub_children = AdminPermission::where('parent_id',$children['id'])->get()->toArray();
+                array_unshift($sub_children,$children);
+                $permission['children'][$key] = $sub_children;
+            }
+        }
+
+        $myPermissions = $role->permissions->toArray();
+        $myPermissions = array_column($myPermissions,'id');
+
         return view('role.permission',compact('permissions','myPermissions','role'));
     }
     public function storePermission(AdminRole $role){
