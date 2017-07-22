@@ -21,9 +21,9 @@ Route::get('/logout','LoginController@logout');
 
 Route::group(['middleware' => 'permissionCheck'],function(){
     Route::get('/home','HomeController@index');
-    Route::resource('users','UserController');
-    Route::resource('roles','RoleController');
-    Route::resource('permissions','PermissionController');
+    Route::resource('users','UserController',['except' => 'show']);
+    Route::resource('roles','RoleController',['except' => 'show']);
+    Route::resource('permissions','PermissionController',['except' => 'show']);
     Route::get('/roles/{role}/permission','RoleController@permission');
     Route::post('/roles/{role}/permission','RoleController@storePermission');
     Route::get('/users/{user}/role','UserController@role');

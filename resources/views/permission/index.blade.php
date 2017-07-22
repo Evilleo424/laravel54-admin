@@ -37,6 +37,7 @@
                                 @endif
                                 <td>
                                     <a type="button" class="btn" href="/permissions/{{$permission->id}}/edit" >编辑</a>
+                                    <a type="button" class="btn resource-delete" delete-url="/permissions/{{$permission->id}}" href="#" >删除</a>
                                 </td>
                             </tr>
                         @endforeach

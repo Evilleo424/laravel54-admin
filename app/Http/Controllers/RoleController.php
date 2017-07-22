@@ -11,9 +11,11 @@ class RoleController extends Controller
         $roles = AdminRole::paginate(10);
         return view('role.index',compact('roles'));
     }
+
     public function create(){
         return view('role.create');
     }
+
     public function store(){
         $this->validate(request(),[
             'name'          => 'required|string|min:2',
@@ -22,9 +24,11 @@ class RoleController extends Controller
         AdminRole::create(request(['name','description']));
         return redirect('/roles');
     }
+
     public function edit(AdminRole $role){
         return view('role.edit',compact('role'));
     }
+
     public function update(AdminRole $role){
         $this->validate(request(),[
             'name'          => 'required|string|min:2',
@@ -72,6 +76,10 @@ class RoleController extends Controller
     }
 
     public function destroy(AdminRole $role){
+	    $permissions = $role->permissions;
+	    foreach($permissions as $permission){
+		    $role->deletePermission($permission);
+	    }
         $role->delete();
         return [
             'error' => 0,

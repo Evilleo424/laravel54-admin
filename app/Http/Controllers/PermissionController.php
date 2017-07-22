@@ -68,7 +68,11 @@ class PermissionController extends Controller
 	}
 
     public function destroy(AdminPermission $permission){
-        $permission->delete();
+	    $childrens = $permission->children;
+	    foreach($childrens as $children){
+		    $children->delete();
+	    }
+	    $permission->delete();
         return [
             'error' => 0,
             'msg'   => ''

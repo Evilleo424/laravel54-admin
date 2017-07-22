@@ -24,6 +24,7 @@
                                     <td>{{$role->description}}</td>
                                     <td>
                                         <a type="button" class="btn" href="/roles/{{$role->id}}/edit" >编辑</a>
+                                        <a type="button" class="btn resource-delete" delete-url="/roles/{{$role->id}}" href="#" >删除</a>
                                         <a type="button" class="btn" href="/roles/{{$role->id}}/permission" >权限管理</a>
                                     </td>
                                 </tr>

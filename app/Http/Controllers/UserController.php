@@ -84,6 +84,10 @@ class UserController extends Controller
 
 
     public function destroy(User $user){
+	    $roles = $user->roles;
+	    foreach($roles as $role){
+		    $user->deleteRole($role);
+	    }
         $user->delete();
         return [
             'error' => 0,
