@@ -170,6 +170,17 @@ class PermissionSeeder extends Seeder
                                     'controller' => 'UserController',
                                     'action' => 'update',
                                 ),
+	                        4 =>
+		                        array(
+			                        'id' => 18,
+			                        'name' => '删除用户',
+			                        'description' => '',
+			                        'parent_id' => 3,
+			                        'class' => NULL,
+			                        'namespace' => 'App\\Http\\Controllers',
+			                        'controller' => 'UserController',
+			                        'action' => 'destroy',
+		                        ),
                         ),
                 ),
             3 =>
@@ -228,6 +239,17 @@ class PermissionSeeder extends Seeder
                                     'controller' => 'RoleController',
                                     'action' => 'store',
                                 ),
+	                        4 =>
+		                        array(
+			                        'id' => 19,
+			                        'name' => '删除角色',
+			                        'description' => '',
+			                        'parent_id' => 4,
+			                        'class' => NULL,
+			                        'namespace' => 'App\\Http\\Controllers',
+			                        'controller' => 'RoleController',
+			                        'action' => 'destroy',
+		                        ),
                         ),
                 ),
             4 =>
@@ -286,6 +308,17 @@ class PermissionSeeder extends Seeder
                                     'controller' => 'PermissionController',
                                     'action' => 'update',
                                 ),
+	                        4 =>
+		                        array(
+			                        'id' => 20,
+			                        'name' => '删除操作',
+			                        'description' => '',
+			                        'parent_id' => 5,
+			                        'class' => NULL,
+			                        'namespace' => 'App\\Http\\Controllers',
+			                        'controller' => 'PermissionController',
+			                        'action' => 'destroy',
+		                        ),
                         ),
                 ),
         );
