@@ -22,7 +22,9 @@
                                     <td>{{$user->name}}</td>
                                     <td>
                                         <a type="button" class="btn" href="/users/{{$user->id}}/edit" >编辑</a>
-                                        <a type="button" class="btn resource-delete" delete-url="/users/{{$user->id}}" href="#" >删除</a>
+                                        @if(\Auth::id() != $user->id)
+                                            <a type="button" class="btn resource-delete" delete-url="/users/{{$user->id}}" href="#" >删除</a>
+                                        @endif
                                         <a type="button" class="btn" href="/users/{{$user->id}}/role" >角色管理</a>
                                     </td>
                                 </tr>
