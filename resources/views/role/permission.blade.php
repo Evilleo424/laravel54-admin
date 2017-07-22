@@ -33,7 +33,7 @@
                                             <tr>
                                                 <td>
                                                     <label>
-                                                        <input type="checkbox" name="permissions[]"
+                                                        <input type="checkbox" name="permissions[]" id="action_{{$permission['id']}}" onclick="parentChange(this,{{$permission['id']}})"
                                                                @if (in_array($permission['id'],$myPermissions))
                                                                checked
                                                                @endif
@@ -49,7 +49,7 @@
                                                         @foreach($children as $sub_children)
                                                             <td>
                                                                 <label>
-                                                                    <input type="checkbox" name="permissions[]"
+                                                                    <input type="checkbox" name="permissions[]" class="action_{{$permission['id']}}" onclick="childrenChange(this,{{$permission['id']}})"
                                                                            @if (in_array($sub_children['id'],$myPermissions))
                                                                            checked
                                                                            @endif
