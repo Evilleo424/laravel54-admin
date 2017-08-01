@@ -12,3 +12,7 @@ yarn-error.log
 .env
 .DS_Store
 composer.lock
+
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
